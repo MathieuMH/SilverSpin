@@ -1,60 +1,12 @@
 
-
-/* Sets the background image for the wheel */
-td.the_wheel
+body 
 {
-    background-image: url(../img/wheel_back.png);
-    background-position: center;
-    background-repeat: none;
+    background-image: url(../img/SF_Background_dense.png);
 }
 
-div.power_controls
+div.sf-wheel
 {
-    margin-right:70px;
-}
-
-div.html5_logo
-{
-    margin-left:70px;
-}
-
-/* Styles for the power selection controls */
-table.power
-{
-    background-color: #cccccc;
-    cursor: pointer;
-    border:1px solid #333333;
-}
-
-table.power th
-{
-    background-color: white;
-    cursor: default;
-}
-
-td.pw1
-{
-    background-color: #6fe8f0;
-}
-
-td.pw2
-{
-    background-color: #86ef6f;
-}
-
-td.pw3
-{
-    background-color: #ef6f6f;
-}
-
-/* Style applied to the spin button once a power has been selected */
-.clickable
-{
-    cursor: pointer;
-}
-
-/* Other misc styles */
-.margin_bottom
-{
-    margin-bottom: 5px;
+    background-image: url(../img/SpinWheel_Silverfin_back.png);
+    background-position: 16px 12px;
+    background-repeat: no-repeat;
 }

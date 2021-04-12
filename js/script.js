@@ -64,29 +64,30 @@
                 // Ensure that power can't be changed while wheel is spinning.
                 if (wheelSpinning == false) {
                     // Reset all to grey incase this is not the first time the user has selected the power.
-                    document.getElementById('pw1').className = "";
-                    document.getElementById('pw2').className = "";
-                    document.getElementById('pw3').className = "";
+                    document.getElementById('pw1').disabled = false;
+                    document.getElementById('pw2').disabled = false;
+                    document.getElementById('pw3').disabled = false;
+                    document.getElementById('wheel-start').disabled = true;
 
                     // Now light up all cells below-and-including the one selected by changing the class.
-                    if (powerLevel >= 1) {
-                        document.getElementById('pw1').className = "pw1";
+                    if (powerLevel == 1) {
+                        document.getElementById('pw2').disabled = true;
+                        document.getElementById('pw3').disabled = true;
                     }
 
-                    if (powerLevel >= 2) {
-                        document.getElementById('pw2').className = "pw2";
+                    if (powerLevel == 2) {
+                        document.getElementById('pw1').disabled = true;
+                        document.getElementById('pw3').disabled = true;
                     }
 
-                    if (powerLevel >= 3) {
-                        document.getElementById('pw3').className = "pw3";
+                    if (powerLevel == 3) {
+                        document.getElementById('pw1').disabled = true;
+                        document.getElementById('pw2').disabled = true;
                     }
 
                     // Set wheelPower var used when spin button is clicked.
                     wheelPower = powerLevel;
-
-                    // Light up the spin button by changing it's source image and adding a clickable class to it.
-                    document.getElementById('spin_button').src = "img/spin_on.png";
-                    document.getElementById('spin_button').className = "clickable";
+                    document.getElementById('wheel-start').disabled = false;
                 }
             }
             // Loads the tick audio sound in to an audio object.
@@ -109,6 +110,8 @@
             function startSpin()
             {
                 // Ensure that spinning can't be clicked again while already running.
+                document.getElementById('wheel-start').disabled = true;
+
                 if (wheelSpinning == false) {
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
                     // to rotate with the duration of the animation the quicker the wheel spins.
@@ -121,8 +124,8 @@
                     }
 
                     // Disable the spin button so can't click again while wheel is spinning.
-                    document.getElementById('spin_button').src       = "img/spin_off.png";
-                    document.getElementById('spin_button').className = "";
+                    //document.getElementById('spin_button').src       = "img/spin_off.png";
+                    //document.getElementById('spin_button').className = "";
 
                     // Begin the spin animation by calling startAnimation on the wheel object.
                     theWheel.startAnimation();
@@ -142,9 +145,10 @@
                 theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
                 theWheel.draw();                // Call draw to render changes to the wheel.
 
-                document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
-                document.getElementById('pw2').className = "";
-                document.getElementById('pw3').className = "";
+                document.getElementById('pw1').disabled = false;
+                document.getElementById('pw2').disabled = false;
+                document.getElementById('pw3').disabled = false;
+                document.getElementById('wheel-start').disabled = true;
 
                 wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
             }
@@ -156,5 +160,5 @@
             function alertPrize(indicatedSegment)
             {
                 // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-                alert("The wheel stopped on " + indicatedSegment.text);
+                alert("Congrats, you won: " + indicatedSegment.text);
             }
